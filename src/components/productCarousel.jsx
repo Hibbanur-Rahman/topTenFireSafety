@@ -1,96 +1,101 @@
-"use client"
+"use client";
 
-import { useState, useRef, useEffect } from "react"
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-
-
-
+import { Card } from "@/components/ui/card";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation,Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/autoplay";
+import { useRef } from "react";
 
 export default function ProductCarousel({ products }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [visibleProducts, setVisibleProducts] = useState(4)
-  const containerRef = useRef(null)
-
-  useEffect(() => {
-    const updateVisibleProducts = () => {
-      if (window.innerWidth < 640) {
-        setVisibleProducts(1)
-      } else if (window.innerWidth < 768) {
-        setVisibleProducts(2)
-      } else if (window.innerWidth < 1024) {
-        setVisibleProducts(3)
-      } else {
-        setVisibleProducts(4)
-      }
-    }
-
-    updateVisibleProducts()
-    window.addEventListener("resize", updateVisibleProducts)
-    return () => window.removeEventListener("resize", updateVisibleProducts)
-  }, [])
-
-  const totalSlides = Math.max(0, products.length - visibleProducts + 1)
-
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) => Math.max(0, prevIndex - 1))
-  }
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => Math.min(totalSlides - 1, prevIndex + 1))
-  }
+  const swiperRef = useRef(null);
 
   return (
     <div className="relative">
-      <div ref={containerRef} className="overflow-hidden">
-        <div
-          className="flex transition-transform duration-300 ease-in-out"
-          style={{
-            transform: `translateX(-${currentIndex * (100 / visibleProducts)}%)`,
-            width: `${(products.length / visibleProducts) * 100}%`,
-          }}
-        >
-          {products.map((product) => (
-            <div key={product.id} className="px-2" style={{ width: `${(100 / products.length) * visibleProducts}%` }}>
-              <Card className="border rounded-lg overflow-hidden h-full flex flex-col">
-                <div className="p-4 flex flex-col items-center">
-                  <div className="relative w-full aspect-square mb-4">
-                    <img
-                      src={product.image || "/placeholder.svg"}
-                      alt={product.name}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                  <h3 className="font-bold text-center">{product.name}</h3>
+      <Swiper
+        modules={[Navigation, Autoplay]}
+        spaceBetween={16}
+        slidesPerView={1}
+        loop={true}
+        autoplay={{
+          delay: 3000, // Autoplay delay in milliseconds (3 seconds)
+          disableOnInteraction: false, // Continue autoplay after user interaction
+        }}
+
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 3,
+          },
+          1024: {
+            slidesPerView: 4,
+          },
+        }}
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
+      >
+        {products.map((product) => (
+          <SwiperSlide
+            key={product.id}
+           
+          >
+            <Card className="border rounded-lg overflow-hidden h-full flex flex-col">
+              <div className="p-4 flex flex-col items-center">
+                <div className="relative w-full aspect-square mb-4">
+                  <img
+                    src={product.image || "/placeholder.svg"}
+                    alt={product.name}
+                    className="object-contain w-full h-[240px]"
+                  />
                 </div>
-              </Card>
-            </div>
-          ))}
-        </div>
-      </div>
+                <h3 className="font-bold text-center">{product.name}</h3>
+              </div>
+            </Card>
+          </SwiperSlide>
+        ))}
+      </Swiper>
 
-      <Button
-        variant="outline"
-        size="icon"
-        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 rounded-full bg-white border-gray-200 shadow-md z-10"
-        onClick={handlePrev}
-        disabled={currentIndex === 0}
+      {/* Custom Navigation Buttons */}
+      <button
+        onClick={() => swiperRef.current?.slidePrev()}
+        className="swiper-button-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 bg-white border border-gray-200 rounded-full p-2 shadow-md cursor-pointer"
       >
-        <ChevronLeft className="h-4 w-4" />
-      </Button>
-
-      <Button
-        variant="outline"
-        size="icon"
-        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 rounded-full bg-white border-gray-200 shadow-md z-10"
-        onClick={handleNext}
-        disabled={currentIndex >= totalSlides - 1}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 text-gray-700"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
+      <button
+        onClick={() => swiperRef.current?.slideNext()}
+        className="swiper-button-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 bg-white border border-gray-200 rounded-full p-2 shadow-md cursor-pointer"
       >
-        <ChevronRight className="h-4 w-4" />
-      </Button>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 text-gray-700"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
     </div>
-  )
+  );
 }
-

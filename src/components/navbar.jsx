@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
-import DownloadDialog from "./downloads";
+
 export function Navbar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -238,16 +238,15 @@ export function Navbar() {
                       </a>
                     </li>
                   </ul>
-
-                  <Button
-                    variant="ghost"
-                    className={`hover:cursor-pointer bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700  transform hover:scale-105 transition-all text-white rounded-full ${
-                      isActive("registration-details") ? "text-blue-600" : ""
-                    }`}
-                    onClick={() => scrollToSection("registration")}
-                  >
-                    Registration
-                  </Button>
+                  <div className="flex items-center gap-[10px]">
+                    <div className="bg-red-700 flex h-[45px] w-[45px] rounded-lg items-center justify-center ">
+                      <PhoneCall className="text-white" />
+                    </div>
+                    <div className="">
+                      <p>Call Us</p>
+                      <p>+91-8125231812</p>
+                    </div>
+                  </div>
                 </div>
               </DrawerContent>
             </Drawer>
@@ -328,7 +327,7 @@ export function Navbar() {
             </div>
             <div className="">
               <p>Call Us</p>
-              <p>+91-9973152523</p>
+              <p>+91-8125231812</p>
             </div>
           </div>
         </div>

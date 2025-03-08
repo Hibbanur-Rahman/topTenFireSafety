@@ -122,3 +122,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 50%;
+  width: 40px !important;
+  height: 40px !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  display: none; /* Hide default arrows */
+}

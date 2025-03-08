@@ -2,13 +2,23 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import HeroImg from "@/assets/images/hero-cover.jpg";
 import EarthImg from "@/assets/images/Earth.svg";
-import { MessageSquare, Building2, Globe, Star, StarHalf } from "lucide-react";
+import {
+  MessageSquare,
+  Building2,
+  Globe,
+  Star,
+  StarHalf,
+  Video,
+} from "lucide-react";
 import { productCategories } from "@/lib/data";
 import ProductCarousel from "@/components/productCarousel";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import contactUsImg from "@/assets/images/contact-us-img.png";
-
+import heroVideo from "@/assets/videos/hero-section-video.mp4";
+import clientImg1 from '@/assets/images/client-1.jpeg';
+import clientImg2 from '@/assets/images/client-2.png';
+import clientImg3 from '@/assets/images/client-3.jpeg';
 const Home = () => {
   const services = [
     {
@@ -35,45 +45,50 @@ const Home = () => {
     {
       id: 1,
       name: "Client 1",
-      image: "/placeholder.svg?height=120&width=120",
+      image: clientImg1,
       rating: 4.5,
     },
     {
       id: 2,
       name: "Client 2",
-      image: "/placeholder.svg?height=120&width=120",
+      image:clientImg2,
       rating: 4,
     },
     {
       id: 3,
       name: "Client 3",
-      image: "/placeholder.svg?height=120&width=120",
+      image: clientImg3,
       rating: 4.5,
     },
   ];
 
   return (
     <main className="min-h-screen w-full ">
-      {/* Hero Section */}
-      <section className="relative h-[400px] flex items-center justify-center text-center w-full">
+      <section className="relative h-[400px] md:h-[90vh] flex items-center justify-center text-center w-full overflow-hidden">
+        {/* Background Video */}
         <div className="absolute inset-0 z-0">
-          <img
-            src={HeroImg}
-            alt="Fire Safety Services"
-            fill
-            className="object-cover brightness-50 w-full"
-            priority
-          />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="object-fill w-full h-full brightness-50"
+          >
+            <source src={heroVideo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
+
+        {/* Content Overlay */}
         <div className="relative z-10 max-w-3xl mx-auto px-4 text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in-up">
             Top Ten Fire Safety Services
           </h1>
-          <p className="text-lg mb-8">
+          <p className="text-lg mb-8 animate-fade-in-up delay-100">
             We know how large objects will act, but things on a small scale just
             do not act that way.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-200">
             <Button className="bg-[#d32f2f] hover:bg-[#b71c1c] text-white border-none">
               Get Quote Now
             </Button>
@@ -94,12 +109,28 @@ const Home = () => {
             <h2 className="text-2xl font-bold mb-2">
               About Us <span className="text-[#d32f2f]">|</span> Who We Are
             </h2>
+
             <p className="text-[#83868a] mt-6">
-              FireWeb is a mature web-based information, incident, and
-              communications tool that has been tailor-made for fire and rescue
-              services and has been successfully utilized in national,
-              provincial, district, and local government throughout South
-              Africa, Brazil, Canada, the United States of America, and Austria
+              At Top Ten Fire Safety, we pride ourselves on our extensive
+              expertise in testing and manufacturing a comprehensive array of
+              fire fighting equipment and systems. Our commitment to excellence
+              drives us to continually refine our products to better serve our
+              customers and address the unique challenges they face.
+            </p>
+            <p className="text-[#83868a] mt-1">
+              Fire Safety Equipment – Top ten Fire safety Services will be a
+              leading fire safety and security services providing a quality
+              service to our customers. We will strive to be the best in the
+              industry. We will deliver the best service to our customers and
+              exceed their expectations.
+            </p>
+            <p className="text-[#83868a] mt-1">
+              Our product line includes a diverse selection of Fire
+              Extinguishers, designed for various applications, Special
+              Application Extinguishers, state-of-the-art In-Panel Suppression
+              Systems, Total Flooding Systems, Wet Chemical Based Kitchen Fire
+              Suppression Systems, Hydrant Systems, and other advanced fire
+              fighting technologies.
             </p>
           </div>
           <div className="flex justify-center">
@@ -192,16 +223,6 @@ const Home = () => {
                 {category.name}
               </h2>
               <ProductCarousel products={category.products} />
-              <div className="flex justify-center gap-1.5">
-                {[...Array(7)].map((_, i) => (
-                  <div
-                    key={i}
-                    className={`h-2 w-2 rounded-full ${
-                      i === 0 ? "bg-[#d32f2f]" : "bg-[#f89191]"
-                    }`}
-                  />
-                ))}
-              </div>
             </section>
           ))}
         </div>
@@ -226,13 +247,13 @@ const Home = () => {
                 key={testimonial.id}
                 className="p-8 flex flex-col items-center text-center"
               >
-                <div className="w-24 h-24 rounded-full overflow-hidden mb-6">
+                <div className="w-24 h-24 rounded-full overflow-hidden mb-6 border border-gray-300">
                   <img
                     src={testimonial.image || "/placeholder.svg"}
                     alt={testimonial.name}
                     width={120}
                     height={120}
-                    className="object-cover"
+                    className="object-cover "
                   />
                 </div>
                 <p className="text-gray-600 mb-4">
@@ -268,7 +289,6 @@ const Home = () => {
               <img
                 src={contactUsImg}
                 alt="People looking at laptop"
-               
                 className="object-cover w-full h-[350px]"
               />
             </div>

@@ -331,7 +331,7 @@ const Home = () => {
             <div>
               <h3 className="text-xl font-bold mb-4">Get in touch</h3>
               <p className="text-gray-600 mb-2">Work and general inquiries</p>
-              <p className="text-gray-800 font-semibold mb-6">+91-9973152523</p>
+              <p className="text-gray-800 font-semibold mb-6">+91-9691787839</p>
 
               <p className="text-gray-600 mb-2">Assistance hours:</p>
               <p className="text-gray-800 mb-1">Monday - Friday</p>

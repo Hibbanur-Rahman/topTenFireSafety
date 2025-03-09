@@ -165,17 +165,7 @@ const Home = () => {
             We know how large objects will act, but things on a small scale just
             do not act that way.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-200">
-            <Button className="bg-[#d32f2f] hover:bg-[#b71c1c] text-white border-none">
-              Get Quote Now
-            </Button>
-            <Button
-              variant="outline"
-              className="text-white border-white hover:bg-white/10 bg-transparent"
-            >
-              Learn More
-            </Button>
-          </div>
+          
         </div>
       </section>
 

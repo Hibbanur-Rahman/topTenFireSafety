@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="fontFamily-poppins overflow-x-hidden w-full">
       <Navbar />
-      <div className="w-full">
+      <div className="w-full overflow-x-hidden">
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>

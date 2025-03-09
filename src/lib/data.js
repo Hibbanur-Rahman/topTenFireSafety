@@ -236,7 +236,7 @@ export const productCategories = [
       },
       { id: "SparePart-2", name: "Safety Pin", image: sparePartItemImg2 },
       { id: "SparePart-3", name: "CO2 Valve", image: sparePartItemImg3 },
-      { id: "SparePart-4", name: "Pressure Gauge", image: sparePartItemImg4 },
+      { id: "SparePart-4", name: "Fire Extinguisher Ball", image: sparePartItemImg4 },
       { id: "SparePart-5", name: "Discharge Lever", image: sparePartItemImg5 },
       { id: "SparePart-6", name: "O-Ring Seal", image: sparePartItemImg6 },
       {

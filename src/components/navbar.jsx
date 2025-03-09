@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
+import DownloadDialog from "./downloads";
 
 export function Navbar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -80,14 +81,10 @@ export function Navbar() {
 
     const sections = [
       "home",
-      "about-manuu",
-      "about-iclt",
-      "about-manuu-law",
-      "call-for-paper",
-      "committee",
-      "paper-submission",
-      "important-dates",
-      "registration-details",
+      "aboutUs",
+      "services",
+      "products",
+      "testimonial",
       "contact",
     ];
 
@@ -110,37 +107,6 @@ export function Navbar() {
 
   return (
     <>
-      {/* *====== upper part ======
-      <div
-        id="upper-nav"
-        className="w-full flex justify-center items-center border border-x-0 border-t-0 bg-white z-[50] relative"
-      >
-        <div className="md:w-10/12 w-full max-w-7xl flex md:flex-row flex-col md:justify-between items-center py-3">
-          <div className="flex items-center">
-            <img src={manuuLogo} alt="" className="md:w-[100px] w-[60px]" />
-            <div className="h-[50px] w-[1px] bg-black mx-3"></div>
-            <img src={springerLogo} className="md:w-[240px] w-[140px]" />
-            <div className="h-[50px] w-[1px] bg-black mx-3 md:hidden flex"></div>
-
-            <img
-              src={birminghamLogo}
-              alt=""
-              className="md:hidden flex w-[60px]"
-            />
-          </div>
-          <div className="rounded-2xl shadow-sm p-3 w-[250px] flex flex-col items-center border md:my-0 my-2">
-            <p className="text-sm font-medium my-1">Conference Date</p>
-            <p className="text-sm font-medium my-1">January 15-16, 2026</p>
-            <div className="rounded-xl p-2 w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700  transform hover:scale-105 transition-all shadow-lg hover:shadow-xl text-white font-medium flex items-center justify-center mt-2">
-              HYBRID MODE
-            </div>
-          </div>
-          <div className="md:flex hidden items-center">
-            <div className="h-[50px] w-[1px] bg-black mx-3"></div>
-            <img src={birminghamLogo} alt="" className="w-[100px]" />
-          </div>
-        </div>
-      </div> */}
       {/**====== main navbar ========= */}
       <div
         className={`w-full bg-white shadow-md p-4 py-0 z-50 transition-all duration-300 ${
@@ -183,25 +149,35 @@ export function Navbar() {
                         Home
                       </a>
                     </li>
-                    {/* service */}
-                    <li>
-                      <a
-                        href="#home"
-                        className="font-semibold hover:text-blue-800 hover:bg-gray-100 py-2 px-4 rounded-lg block"
-                      >
-                        Service
-                      </a>
-                    </li>
+                   
                     {/* about */}
                     <li>
                       <a
-                        href="#home"
+                        href="#aboutUs"
                         className="font-semibold hover:text-blue-800 hover:bg-gray-100 py-2 px-4 rounded-lg block"
                       >
                         About
                       </a>
                     </li>
-                    {/* gallery */}
+                     {/* service */}
+                     <li>
+                      <a
+                        href="#services"
+                        className="font-semibold hover:text-blue-800 hover:bg-gray-100 py-2 px-4 rounded-lg block"
+                      >
+                        Services
+                      </a>
+                    </li>
+                     {/* products */}
+                     <li>
+                      <a
+                        href="#products"
+                        className="font-semibold hover:text-blue-800 hover:bg-gray-100 py-2 px-4 rounded-lg block"
+                      >
+                        Products
+                      </a>
+                    </li>
+                    {/* gallery
                     <li>
                       <a
                         href="#home"
@@ -209,20 +185,24 @@ export function Navbar() {
                       >
                         Gallery
                       </a>
-                    </li>
+                    </li> */}
                     {/* catalogue */}
                     <li>
-                      <a
-                        href="#home"
+                      <p
+                        onClick={() => setIsOpenDownload(!isOpenDownload)}
                         className="font-semibold hover:text-blue-800 hover:bg-gray-100 py-2 px-4 rounded-lg block"
                       >
                         Catalogue
-                      </a>
+                      </p>
                     </li>
+                    <DownloadDialog
+                      open={isOpenDownload}
+                      setOpen={setIsOpenDownload}
+                    />
                     {/* Testimonial */}
                     <li>
                       <a
-                        href="#Testimonial"
+                        href="#testimonial"
                         className="font-semibold hover:text-blue-800 hover:bg-gray-100 py-2 px-4 rounded-lg block"
                       >
                         Testimonial
@@ -231,7 +211,7 @@ export function Navbar() {
                     {/* Contact Us */}
                     <li>
                       <a
-                        href="#Contact Us"
+                        href="#contact"
                         className="font-semibold hover:text-blue-800 hover:bg-gray-100 py-2 px-4 rounded-lg block"
                       >
                         Contact Us
@@ -264,46 +244,51 @@ export function Navbar() {
                   Home
                 </a>
               </li>
-              {/* Service */}
-              <li className="relative group">
-                <a
-                  href="#Service"
-                  className="font-semibold hover:text-blue-800 hover:bg-gray-100 py-2 px-4 rounded-lg"
-                >
-                  Service
-                </a>
-              </li>
+             
               {/* About */}
               <li className="relative group">
                 <a
-                  href="#About"
+                  href="#aboutUs"
                   className="font-semibold hover:text-blue-800 hover:bg-gray-100 py-2 px-4 rounded-lg"
                 >
                   About
                 </a>
               </li>
+               {/* Service */}
+               <li className="relative group">
+                <a
+                  href="#services"
+                  className="font-semibold hover:text-blue-800 hover:bg-gray-100 py-2 px-4 rounded-lg"
+                >
+                  Service
+                </a>
+              </li>
               {/* Product */}
               <li className="relative group">
                 <a
-                  href="#Product"
+                  href="#products"
                   className="font-semibold hover:text-blue-800 hover:bg-gray-100 py-2 px-4 rounded-lg"
                 >
                   Product
                 </a>
               </li>
               {/* Catalogue */}
-              <li className="relative group">
-                <a
-                  href="#Catalogue"
+              <li className="relative group cursor-pointer">
+                <p
+                  onClick={() => setIsOpenDownload(!isOpenDownload)}
                   className="font-semibold hover:text-blue-800 hover:bg-gray-100 py-2 px-4 rounded-lg"
                 >
                   Catalogue
-                </a>
+                </p>
               </li>
+              <DownloadDialog
+                open={isOpenDownload}
+                setOpen={setIsOpenDownload}
+              />
               {/* Testimonial */}
               <li className="relative group">
                 <a
-                  href="#Testimonial"
+                  href="#testimonial"
                   className="font-semibold hover:text-blue-800 hover:bg-gray-100 py-2 px-4 rounded-lg"
                 >
                   Testimonial
@@ -312,7 +297,7 @@ export function Navbar() {
               {/* Contact Us */}
               <li className="relative group">
                 <a
-                  href="#Contact Us"
+                  href="#contact"
                   className="font-semibold hover:text-blue-800 hover:bg-gray-100 py-2 px-4 rounded-lg"
                 >
                   Contact Us

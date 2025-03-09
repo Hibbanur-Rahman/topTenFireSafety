@@ -112,7 +112,7 @@ const Home = () => {
     {
       id: 1,
       name: "Aftab Ahmed",
-      title: "Lightex Owner",
+      title: "Global Fire safety Owner",
       image: clientImg1,
       rating: 5,
       text: "Impressed with the quality of your fire safety products! The fire extinguisher not only meets our safety standards but also exceeds expectations. Great job!",
